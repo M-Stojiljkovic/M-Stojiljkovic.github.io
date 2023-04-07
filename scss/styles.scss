@@ -1,0 +1,743 @@
+
+// Base boja
+$base-color: rgba(115, 146, 250, 0.53);
+$base-color-hover: darken($base-color, 10%);
+
+// Pozadinska boja
+:root{
+--primary-color: #fff;
+--secondary-color: #f2f2f5;
+}
+.dark-theme{
+    --primary-color: #111;
+    --secondary-color: #212121;
+}
+
+.bg-light {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity));
+}
+// Boja ivica
+$border: #dcd9d9;
+
+// Boja text-a
+$heading: #374054;
+$text: #74808a;
+
+/*
+    ---------------------
+    ----- 2. Mixins -----
+    ---------------------
+*/
+
+@mixin transition($duration: 0.5s, $func: ease, $property: all) {
+    transition: #{$duration} #{$func} #{$property};
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+        opacity: 1;
+    }
+
+    &::-moz-placeholder {
+        @content;
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+/*
+    ----------------------------
+    ----- 3. Global Styles -----
+    ----------------------------
+*/
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+
+    &.active {
+        overflow: hidden;
+        z-index: -1;
+    }
+}
+
+// No JS styles
+.no-js {
+    #experience-timeline {
+        > div {
+            background: var(--primary-color);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid $border;
+
+            h3 {
+                font-size: 1.5em;
+                font-weight: 300;
+                color: $heading;
+                display: inline-block;
+                margin: 0;
+            }
+
+            h4 {
+                font-size: 1.2em;
+                font-weight: 300;
+                color: #7e8890;
+                margin: 0 0 15px 0;
+            }
+
+            p {
+                color: $text;
+                font-size: 0.9em;
+                margin: 0;
+            }
+        }
+
+        &:before, &:after {
+            content: none;
+        }
+    }
+}
+
+@keyframes dropHeader {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+header {
+    li {
+        font-family: 'Lato', serif;
+    }
+}
+
+footer {
+    background-color: var(--primary-color);
+    padding: 50px 0;
+}
+
+.copyright {
+    padding-top: 20px;
+
+    p {
+        margin: 0;
+        color: $text;
+    }
+}
+
+.top {
+    text-align: center;
+
+    span {
+        cursor: pointer;
+        display: block;
+        margin: 15px auto 0 auto;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 3px solid lighten($text, 25%);
+        text-align:center;
+    }
+
+    i {
+        color: $text;
+    }
+}
+
+.social {
+    text-align: right;
+
+    ul {
+        margin: 5px 0 0 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        font-size: 1.25em;
+        list-style: none;
+    }
+
+    a {
+        display: block;
+        color: $text;
+        padding: 10px;
+
+        &:hover {
+            color: $base-color;
+        }
+    }
+}
+
+.btn-rounded-white {
+    display: inline-block;
+    color: #fff;
+    padding: 15px 25px;
+    border: 3px solid #fff;
+    border-radius: 30px;
+    @include transition();
+
+    &:hover {
+        color: $base-color;
+        background: #fff;
+        text-decoration: none;
+    }
+}
+
+.shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.shadow-large {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.heading {
+    position: relative;
+    display: inline-block;
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0 0 30px 0;
+
+    &:after {
+        position: absolute;
+        content: '';
+        top: 100%;
+        height: 1px;
+        width: 50px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background: $base-color;
+    }
+}
+
+.background-alt {
+    background: var(--secondary-color);
+}
+
+/*
+    --------------------------
+    ----- 4. Lead Styles -----
+    --------------------------
+*/
+
+#lead {
+    position: relative;
+    height: 100vh;
+    min-height: 500px;
+    max-height: 1080px;
+    background: url(../images/lead-bg.jpg);
+    background-size: cover;
+    padding: 15px;
+    overflow: hidden;
+}
+
+#lead-content {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    h1, h2 {
+        margin: 0;
+    }
+
+    h1 {
+        color: #fff;
+        font-weight: 900;
+        font-size: 4em;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 0.9em;
+    }
+
+    h2 {
+        color: lighten($base-color, 30%);
+        font-weight: 500;
+        font-size: 2.25em;
+        margin-bottom: 15px;
+    }
+}
+
+#lead-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($base-color-hover, 0.8);
+    z-index: 1;
+}
+
+#lead-down {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    bottom: 15px;
+    color: #fff;
+
+    span {
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 3px solid lighten($base-color, 25%);
+        text-align:center;
+    }
+
+    i {
+        animation: pulsate 1.5s ease;
+        animation-iteration-count: infinite;
+        padding-top: 5px;;
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        transform: scale(1.2, 1.2);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+/*
+    ---------------------------
+    ----- 5. About Styles -----
+    ---------------------------
+*/
+
+#about {
+    text-align: center;
+    background-color: var(--primary-color);
+    padding: 75px 15px;
+    border-bottom: 1px solid $border;
+
+    h2 {
+        color: $heading;
+    }
+
+    p {
+        color: $text;
+        margin: 0;
+        text-align: left;
+    }
+}
+
+
+/*
+    -------------------------------
+    ----- 6. Skills Styles -----
+    -------------------------------
+*/
+
+#skills {
+    background-color: var(--primary-color);
+    padding: 75px 15px;
+    text-align: center;
+
+    h2 {
+        color: $heading;
+        margin-bottom: 50px;
+    }
+    p {
+        color: $text;
+        
+    }
+
+    
+
+.logos {
+        
+        transition: ease .9s;
+        float: none;
+        width: 130px;
+        height: 130px;
+        margin: auto;
+        
+    }
+    .logos:hover{
+        transform: scale(1.1);
+        .hover{
+            opacity: 1;
+        }
+        
+    }
+    .logos img {
+        
+        max-width:100%;
+        max-height:100%;
+        pointer-events: none;
+        user-select: none;
+        cursor: default;
+}
+    
+    .hover {
+        position: relative;
+        opacity: 0;
+        transform: scale(1);
+        transition: 0.8s;
+        font-size: 1em;
+        
+}
+    .space{
+        padding: 1em;
+        margin-bottom: 3em;
+    }
+
+}
+
+
+
+
+/*
+    -------------------------------
+    ----- 7. Project Styles -----
+    -------------------------------
+*/
+
+#projects {
+    padding: 75px 15px;
+    border-bottom: 1px solid $border;
+    text-align: center;
+
+    h2 {
+        color: $heading;
+        margin-bottom: 50px;
+    }
+}
+
+.project {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.project-image {
+    float: left;
+}
+
+.project-info {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 300px;
+    padding: 15px;
+
+    h3 {
+        font-size: 1.5em;
+        font-weight: 300;
+        color: $heading;
+        margin: 0 0 15px 0;
+    }
+
+    p {
+        color: $text;
+        margin: 0 0 15px 0;
+        font-size: 0.9em;
+    }
+}
+
+.no-image {
+    .project-info {
+        position: relative;
+        margin: 0;
+        padding: 30px 15px;
+        transform: none;
+    }
+}
+
+#more-projects {
+    display: none;
+}
+
+/*
+    -------------------------------
+    ----- 8. Contact Styles -----
+    -------------------------------
+*/
+
+#contact {
+    padding: 50px 15px;
+    background: $base-color;
+    text-align: center;
+
+    h2 {
+        margin: 0 0 15px 0;
+        color: #fff;
+        font-weight: 500;
+    }
+}
+
+#contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+
+    input, textarea {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: none;
+        margin-bottom: 10px;
+        background: darken($base-color, 15%);
+        color: #fff;
+        @include transition();
+        @include placeholder {
+            color: #fff;
+        }
+
+        &:focus {
+            outline: none;
+            background: darken($base-color, 25%);
+        }
+    }
+
+    textarea {
+        height: 150px;
+        resize: none;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        background: #fff;
+        border-radius: 4px;
+        padding: 5px 10px;
+        border: none;
+        color: $base-color;
+        font-weight: 700;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        @include transition();
+
+        &:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+    }
+}
+
+/*
+    ---------------------------------------
+    ----- 9. Optional Section Styles -----
+    ---------------------------------------
+*/
+
+.optional-section {
+    padding: 50px 15px;
+    text-align: center;
+    border-top: 1px solid $border;
+
+    h2 {
+        color: $heading;
+    }
+}
+
+.optional-section-block {
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    padding: 15px;
+    border: 1px solid $border;
+    background: #fff;
+    text-align: left;
+
+    h3 {
+        font-weight: 500;
+        margin: 0 0 15px 0;
+        color: $heading;
+    }
+
+    h4 {
+        color: $text;
+        clear: both;
+        font-weight: 500;
+        margin: 0 0 15px 0;
+    }
+
+    p, ul {
+        margin: 0 0 15px 0;
+        color: $text;
+        font-size: 0.9em;
+    }
+
+    ul {
+        padding: 0 0 0 15px;
+    }
+}
+
+/*
+    -----------------------------
+    ----- 10. Media Queries -----
+    -----------------------------
+*/
+
+// Collapse timeline
+@media only screen and (max-width: 750px) {
+
+    #experience-timeline {
+        &:before, &:after {
+            left: 23px;
+        }
+
+    }
+
+    .vtimeline-date {
+        width: auto;
+        text-align: left;
+        position: relative;
+        margin-bottom: 15px;
+        display: block;
+        margin-left: 70px;
+    }
+
+    .vtimeline-icon {
+        margin-left: 0;
+    }
+
+    .vtimeline-content {
+        margin-left: 70px;
+    }
+
+}
+
+// Medium Devices
+@media only screen and (max-width : 992px) {
+
+    #lead {
+        height: auto;
+        min-height: auto;
+        max-height: auto;
+        padding: 100px 15px;
+    }
+
+    #lead-content {
+        position: relative;
+        transform: none;
+        left: auto;
+        top: auto;
+
+        h1 {
+            font-size: 3em;
+        }
+
+        h2 {
+            font-size: 1.75em;
+        }
+    }
+
+
+}
+
+// Small Devices
+@media only screen and (max-width : 400px) {
+
+    header {
+        position: fixed;
+        display: none;
+        z-index: 999;
+        animation: none;
+        bottom: 0;
+        height: 100%;
+    }
+
+
+
+    #lead-content {
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.3em;
+        }
+
+        a {
+            padding: 10px 20px;
+        }
+        
+    }
+
+    #lead-down {
+        display: none;
+    }
+
+    .education-block {
+        h3, span {
+            float: none;
+        }
+    }
+
+    .project-image {
+        display: none;
+    }
+
+    .project-info {
+        position: relative;
+        margin: 0;
+        padding: 30px 15px;
+        top: auto;
+        transform: none;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    .social {
+        text-align: center;
+    }
+  
+}
+#moon{
+    border: 5px;
+    width: 30px;
+    cursor: pointer;
+}
+// Extra Small Devices
+@media only screen and (max-width : 480px) {
+
+    #lead-content {
+        h1 {
+            font-size: 1.5em;
+        }
+
+        h2 {
+            font-size: 1em;
+        }
+
+        a {
+            font-size: 0.9em;
+            padding: 5px 10px;
+        }
+    }
+
+}
+

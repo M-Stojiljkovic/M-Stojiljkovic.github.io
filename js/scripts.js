@@ -1,15 +1,14 @@
-(function($) {
-    
+(function ($) {
     // Trenutna Godina
     $("#godina").text(new Date().getFullYear());
 
-    // Remove no-js class
+    // Uklanja no-js klasu
     $('html').removeClass('no-js');
 
-    // Animate to section when nav is clicked
-    $('header a').click(function(e) {
+    // Animacija do sekcije
+    $('header a').click(function (e) {
 
-        // Treat as normal link if no-scroll class
+        // Tretira kao normalan link ako no-scroll klasa postoji
         if ($(this).hasClass('no-scroll')) return;
 
         e.preventDefault();
@@ -20,7 +19,7 @@
             scrollTop: scrollDistance + 'px'
         }, Math.abs(window.pageYOffset - $(heading).offset().top) / 1);
 
-        // Hide the menu once clicked if mobile
+        // Sakri meni ako je kliknuto (mobile)
         
     });
 
@@ -39,26 +38,26 @@
         }, 500);
     });
 
-    // Create timeline
+    // Pravi Timeline
     $('#experience-timeline').each(function() {
 
         $this = $(this); // Store reference to this
         $userContent = $this.children('div'); // user content
 
-        // Create each timeline block
+        // Dodaje svaki timeline blok
         $userContent.each(function() {
             $(this).addClass('vtimeline-content').wrap('<div class="vtimeline-point"><div class="vtimeline-block"></div></div>');
         });
 
-        // Add icons to each block
+        // Dodaje ikone na svaki blok
         $this.find('.vtimeline-point').each(function() {
             $(this).prepend('<div class="vtimeline-icon"><i class="fa fa-map-marker"></i></div>');
         });
 
-        // Add dates to the timeline if exists
+        // Dodaje datum na timeline (ako postoji)
         $this.find('.vtimeline-content').each(function() {
             var date = $(this).data('date');
-            if (date) { // Prepend if exists
+            if (date) { 
                 $(this).parent().prepend('<span class="vtimeline-date">'+date+'</span>');
             }
         });

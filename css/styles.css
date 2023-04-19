@@ -340,6 +340,7 @@ footer {
   width: 130px;
   height: 130px;
   margin: auto;
+  margin-bottom: 10px;
 }
 #skills .logos:hover {
   -webkit-transform: scale(1.1);
@@ -378,7 +379,7 @@ footer {
     -------------------------------
 */
 #projects {
-  padding: 75px 15px;
+  padding: 50px 15px;
   border-bottom: 1px solid #dcd9d9;
   text-align: center;
 }
@@ -394,6 +395,7 @@ footer {
   overflow: hidden;
   background: #fff;
   border-radius: 4px;
+  padding: 0;
 }
 
 .project-image {
@@ -407,12 +409,15 @@ footer {
           transform: translateY(-50%);
   margin-left: 300px;
   padding: 15px;
+  max-height: 300px;
+    
 }
 .project-info h3 {
   font-size: 1.5em;
   font-weight: 300;
   color: #374054;
   margin: 0 0 15px 0;
+    overflow: auto;
 }
 .project-info p {
   color: #74808a;
@@ -552,60 +557,71 @@ footer {
     ----- 10. Media Queries -----
     -----------------------------
 */
-@media only screen and (max-width: 750px) {
-  #experience-timeline:before, #experience-timeline:after {
-    left: 23px;
+
+    @media only screen and (max-width: 992px) {
+      #lead {
+        height: auto;
+        min-height: auto;
+        max-height: auto;
+        padding: 100px 15px;
+      }
+
+      #lead-content {
+        position: relative;
+        -webkit-transform: none;
+                transform: none;
+        left: auto;
+        top: auto;
+      }
+      #lead-content h1 {
+        font-size: 3em;
+      }
+      #lead-content h2 {
+        font-size: 1.75em;
+      }
+        .project-info{
+            overflow-y: scroll;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+      #lead-content h1 {
+        font-size: 1.5em;
+      }
+      #lead-content h2 {
+        font-size: 1em;
+      }
+      #lead-content a {
+        font-size: 0.9em;
+        padding: 5px 10px;
+      } 
+        
+      .project-image {
+        display: none;
   }
 
-  .vtimeline-date {
-    width: auto;
-    text-align: left;
-    position: relative;
-    margin-bottom: 15px;
-    display: block;
-    margin-left: 70px;
+      .project-info {
+        max-height: none;
+        position: relative;
+        margin: 0;
+        padding: 30px 15px;
+        top: auto;
+        -webkit-transform: none;
+                transform: none;
+        overflow: hidden;
   }
+    }
 
-  .vtimeline-icon {
-    margin-left: 0;
-  }
-
-  .vtimeline-content {
-    margin-left: 70px;
-  }
-}
-@media only screen and (max-width: 992px) {
-  #lead {
-    height: auto;
-    min-height: auto;
-    max-height: auto;
-    padding: 100px 15px;
-  }
-
-  #lead-content {
-    position: relative;
-    -webkit-transform: none;
-            transform: none;
-    left: auto;
-    top: auto;
-  }
-  #lead-content h1 {
-    font-size: 3em;
-  }
-  #lead-content h2 {
-    font-size: 1.75em;
-  }
-}
-@media only screen and (max-width: 400px) {
-  header {
-    position: fixed;
-    display: none;
-    z-index: 999;
-    -webkit-animation: none;
-            animation: none;
-    bottom: 0;
-    height: 100%;
-  }
+    @media only screen and (max-width: 400px) {
+      header {
+        position: fixed;
+        display: none;
+        z-index: 999;
+        -webkit-animation: none;
+                animation: none;
+        bottom: 0;
+        height: 100%;
+      }
 
   #lead-content h1 {
     font-size: 2em;
@@ -625,18 +641,7 @@ footer {
     float: none;
   }
 
-  .project-image {
-    display: none;
-  }
-
-  .project-info {
-    position: relative;
-    margin: 0;
-    padding: 30px 15px;
-    top: auto;
-    -webkit-transform: none;
-            transform: none;
-  }
+ 
 
   footer {
     text-align: center;
@@ -653,15 +658,3 @@ footer {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 480px) {
-  #lead-content h1 {
-    font-size: 1.5em;
-  }
-  #lead-content h2 {
-    font-size: 1em;
-  }
-  #lead-content a {
-    font-size: 0.9em;
-    padding: 5px 10px;
-  }
-}
